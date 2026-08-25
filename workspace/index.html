@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Puzzle Planet — Play &amp; Learn the Solar System</title>
+    <meta
+      name="description"
+      content="Fly your rocket past grumpy asteroids, land on six REAL planets, solve clever logic puzzles and collect amazing space facts. A play-and-learn space adventure for kids 8+."
+    />
+    <meta name="theme-color" content="#061a2e" />
+
+    <!-- preview / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Puzzle Planet — Play &amp; Learn the Solar System" />
+    <meta
+      property="og:description"
+      content="Rocket flight + logic puzzles + real planet science. Dodge asteroids, crack the puzzle, ace the quiz, and fill your Galactic Journal. For explorers age 8+."
+    />
+    <meta
+      property="og:image"
+      content="https://image.qwenlm.ai/generated-images/14b214e2-9120-4adb-9ebe-40b5e0648911/_result.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Puzzle Planet — Play &amp; Learn the Solar System" />
+    <meta
+      name="twitter:description"
+      content="Rocket flight + logic puzzles + real planet science. A play-and-learn space adventure for kids 8+."
+    />
+    <meta
+      name="twitter:image"
+      content="https://image.qwenlm.ai/generated-images/14b214e2-9120-4adb-9ebe-40b5e0648911/_result.png"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://image.qwenlm.ai/generated-images/14b214e2-9120-4adb-9ebe-40b5e0648911/_result.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="https://image.qwenlm.ai/generated-images/14b214e2-9120-4adb-9ebe-40b5e0648911/_result.png"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg transform='rotate(-14 32 32)'%3E%3Cellipse cx='32' cy='34' rx='29' ry='9' fill='none' stroke='%23061726' stroke-width='6'/%3E%3Cellipse cx='32' cy='34' rx='29' ry='9' fill='none' stroke='%23ffd23f' stroke-width='3'/%3E%3C/g%3E%3Ccircle cx='32' cy='32' r='19' fill='%233ee6c1' stroke='%23061726' stroke-width='4'/%3E%3Ccircle cx='25' cy='29' r='3' fill='%23061726'/%3E%3Ccircle cx='39' cy='29' r='3' fill='%23061726'/%3E%3Cpath d='M26 36 Q32 41 38 36' stroke='%23061726' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='19' cy='34' r='3' fill='%23ff7ab8'/%3E%3Ccircle cx='45' cy='34' r='3' fill='%23ff7ab8'/%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Titan+One&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body,
+      #root {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #061a2e;
+        overflow: hidden;
+      }
+    </style>
+
+    <script>
+      /* Portable loader + boot diagnostics.
+         Makes the built game run from ANYWHERE:
+           - site root            (/assets/...)
+           - GitHub Pages subpath (/dinos/planets/...)
+           - double-clicked file  (file:// — browsers block type="module"
+                                   there, so we fall back to a classic
+                                   <script> tag, which the bundle supports)
+         If nothing can load, a clear on-screen message replaces the
+         dreaded silent black window. */
+      (function () {
+        var STEP_TIMEOUT = 1500;
+        var missing = [];
+        var attempts = [];
+
+        function rootEl() { return document.getElementById("root"); }
+        function mounted() { var r = rootEl(); return !!(r && r.children.length); }
+
+        function showError() {
+          var box = document.getElementById("boot-error");
+          if (!box || box.style.display === "block") return;
+          var list = missing.length
+            ? missing.map(function (f) { return "<code>assets/" + f + "</code>"; }).join(" and ")
+            : "the game files";
+          var tried = attempts.length
+            ? '<p class="be-fix"><b>What I tried (click a link to check it yourself):</b></p>' +
+              '<ul class="be-list">' +
+              attempts
+                .map(function (a) {
+                  return '<li><span class="' + (a.ok ? "be-ok" : "be-bad") + '">' + (a.ok ? "&#10003;" : "&#10007;") +
+                    '</span> <a href="' + a.url + '" target="_blank" rel="noopener">' + a.url + "</a></li>";
+                })
+                .join("") +
+              "</ul>" +
+              '<p class="be-fix">A <span class="be-bad">&#10007;</span> link that shows a GitHub 404 page means that exact file ' +
+              "is missing from your repository. <b>Every &#10007; file must be uploaded</b> — planets.html alone is an empty shell.</p>"
+            : "";
+          box.innerHTML =
+            '<div class="be-card">' +
+            '<div class="be-face">&#128760;</div>' +
+            '<h1>Houston, we have a problem!</h1>' +
+            "<p>The planet cannot load because the browser could not find " + list + ".</p>" +
+            tried +
+            '<p class="be-fix"><b>Mixing old and new files?</b> Asset filenames change with every build. ' +
+            "Delete your old planets folder contents on GitHub and upload <b>planets.html + the whole assets folder " +
+            "from the SAME download</b> — never mix files from different downloads.</p>" +
+            '<p class="be-fix"><b>If you uploaded to GitHub Pages:</b> the <b>assets</b> folder must sit ' +
+            "right next to <b>planets.html</b>, like this:</p>" +
+            '<pre>your-folder/\n\u251C\u2500 planets.html\n\u2514\u2500 assets/\n   \u2514\u2500 (all the game files)</pre>' +
+            '<p class="be-fix">Then wait ~2 minutes for GitHub to publish and press <b>Ctrl+Shift+R</b>.</p>' +
+            '<p class="be-fix"><b>If you double-clicked the file:</b> make sure the <b>assets</b> folder is ' +
+            "in the same folder as planets.html, then try opening it in <b>Chrome or Edge</b>. " +
+            "Still stuck? Serve the folder instead (e.g. run <code>python3 -m http.server</code> in it " +
+            "and visit <code>http://localhost:8000/planets.html</code>).</p>" +
+            '<p class="be-url">Page address: <code>' + location.href + "</code></p>" +
+            "</div>";
+          box.style.display = "block";
+        }
+
+        /* Try one way of loading a file; call onOk/onFail exactly once. */
+        function attempt(kind, file, base, asModule, onOk, onFail) {
+          var el;
+          var done = false;
+          var timer = null;
+          function finish(ok) {
+            if (done) return;
+            done = true;
+            if (timer) clearTimeout(timer);
+            attempts.push({ url: (kind === "css" ? el.href : el.src), ok: ok });
+            if (!ok) { try { el.remove(); } catch (e) { /* already gone */ } }
+            ok ? onOk() : onFail();
+          }
+          if (kind === "css") {
+            el = document.createElement("link");
+            el.rel = "stylesheet";
+            el.href = base + file;
+          } else {
+            el = document.createElement("script");
+            if (asModule) el.type = "module";
+            /* note: deliberately NO crossorigin attribute — with it,
+               file:// fetches get CORS-blocked by some browsers. */
+            el.src = base + file;
+          }
+          el.onload = function () { finish(true); };
+          el.onerror = function () { finish(false); };
+          document.head.appendChild(el);
+          /* safety: some failures are silent (e.g. file:// module block) */
+          timer = setTimeout(function () { finish(false); }, STEP_TIMEOUT);
+        }
+
+        function chain(kind, file, steps, i) {
+          if (mounted()) return; /* a previous step already booted the app */
+          if (i >= steps.length) {
+            if (kind === "js") { missing.push(file); showError(); }
+            return;
+          }
+          attempt(kind, file, steps[i][0], steps[i][1],
+            function () { /* loaded */ },
+            function () { chain(kind, file, steps, i + 1); });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          /* Collect the file names Vite injected, and check whether the
+             injected tags already did their job (site-root hosting). */
+          var jsFile = null, cssFile = null, cssLoaded = false;
+          document.head
+            .querySelectorAll('script[type="module"][src*="/assets/"]')
+            .forEach(function (el) { jsFile = el.getAttribute("src").split("/").pop(); });
+          document.head
+            .querySelectorAll('link[rel="stylesheet"][href*="/assets/"]')
+            .forEach(function (el) {
+              cssFile = el.getAttribute("href").split("/").pop();
+              if (el.sheet) cssLoaded = true;
+            });
+          var jsAlreadyRan = mounted();
+          /* Remove the injected tags; our chain re-adds them portably. */
+          document.head
+            .querySelectorAll('script[type="module"][src*="/assets/"], link[rel="stylesheet"][href*="/assets/"]')
+            .forEach(function (el) { el.remove(); });
+
+          var steps = [
+            ["./assets/", true],  /* module, page's own folder  */
+            ["/assets/", true],   /* module, site root          */
+            ["./assets/", false], /* classic, page's own folder (file:// fix) */
+            ["/assets/", false]   /* classic, site root         */
+          ];
+          if (cssFile && !cssLoaded) chain("css", cssFile, steps, 0);
+          if (jsFile && !jsAlreadyRan) chain("js", jsFile, steps, 0);
+
+          /* Final safety net: files "loaded" but the app never appeared. */
+          setTimeout(function () { if (!mounted()) showError(); }, 6000);
+        });
+      })();
+    </script>
+    <style>
+      #boot-error { display: none; position: fixed; inset: 0; z-index: 9999; overflow: auto;
+        padding: 24px; background: #061a2e; font-family: "Nunito", sans-serif; color: #fff6e3; }
+      #boot-error .be-card { max-width: 580px; margin: 5vh auto; padding: 28px 30px;
+        background: linear-gradient(180deg, #134168, #0d2b47); border: 3px solid #061726;
+        border-radius: 18px; box-shadow: 0 6px 0 #04101f; }
+      #boot-error .be-face { font-size: 44px; }
+      #boot-error h1 { font-family: "Titan One", sans-serif; color: #ffd23f; font-size: 28px; margin: 8px 0 12px; }
+      #boot-error p { font-size: 15px; line-height: 1.55; color: #cfe6ff; margin: 0 0 10px; font-weight: 700; }
+      #boot-error code { background: #061726; color: #3ee6c1; padding: 1px 7px; border-radius: 6px; font-size: 13px; }
+      #boot-error pre { background: #04101f; border: 2px solid #061726; border-radius: 12px;
+        padding: 12px 16px; font-size: 13px; color: #9be84a; overflow-x: auto; }
+      #boot-error b { color: #ffd23f; }
+      #boot-error .be-fix { color: #bfe0ff; }
+      #boot-error .be-url { font-size: 12px; color: #7fa6cc; word-break: break-all; margin-top: 14px; }
+      #boot-error .be-list { list-style: none; margin: 0 0 12px; padding: 12px 14px; background: #04101f;
+        border: 2px solid #061726; border-radius: 12px; }
+      #boot-error .be-list li { font-size: 12.5px; margin: 6px 0; word-break: break-all; font-weight: 700; }
+      #boot-error .be-list a { color: #5bc9ff; text-decoration: underline; }
+      #boot-error .be-ok { color: #9be84a; font-weight: 900; }
+      #boot-error .be-bad { color: #ff6b4a; font-weight: 900; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="boot-error"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

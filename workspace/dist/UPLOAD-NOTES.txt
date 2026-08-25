@@ -1,0 +1,56 @@
+======================================================
+  PUZZLE PLANET — UPLOAD / INSTALL NOTES  (v3 package)
+======================================================
+
+PACKAGE CONTENTS
+----------------
+  planets.html                      <- the game page (pre-named for you)
+  assets/index-om7_Ztoi.js          <- the actual game (ALL of it)
+  assets/index-CkomTwBo.css         <- the game's styling
+  index.html                        <- identical to planets.html (ignore)
+  UPLOAD-NOTES.txt                  <- this file (do not upload)
+
+!!! THE ONE RULE !!!
+--------------------
+planets.html and the assets folder must ALWAYS come from the SAME
+download, and be placed in the SAME folder. planets.html by itself is
+an EMPTY SHELL - without its matching assets folder you get a black
+screen. Never mix files from different downloads (asset filenames like
+"index-om7_Ztoi.js" change with every build - that is what caused the
+black screens before).
+
+
+OPTION A - GitHub Pages (your case)
+-----------------------------------
+1. On GitHub, DELETE everything currently inside dinos/planets/
+   (old planets.html, old index.html, old assets folder).
+2. Upload from THIS package:
+       planets.html
+       assets/index-om7_Ztoi.js
+       assets/index-CkomTwBo.css
+   so the repo looks exactly like:
+       dinos/planets/planets.html
+       dinos/planets/assets/index-om7_Ztoi.js
+       dinos/planets/assets/index-CkomTwBo.css
+3. Push, wait about 2 minutes for GitHub Pages to publish.
+4. Open  https://talented-nation.github.io/dinos/planets/planets.html
+   and press Ctrl+Shift+R (hard refresh - old broken copies are cached!).
+
+Trouble? The page now explains itself: if a file is missing it shows a
+"Houston, we have a problem!" panel listing every file it tried with
+clickable links. A link that 404s tells you exactly which file is
+missing from the repo.
+
+
+OPTION B - run locally (double-click)
+-------------------------------------
+Keep planets.html and the assets folder together in one folder, then
+double-click planets.html (Chrome or Edge recommended). It works even
+from file:// thanks to the built-in fallback loader.
+Your progress (best score + Galactic Journal) is saved per browser.
+
+
+OPTION C - any other static host (Netlify, itch.io, school server...)
+---------------------------------------------------------------------
+Upload the whole folder contents as-is. The page auto-detects paths,
+so it works at a site root, in a subfolder, or on any host.
